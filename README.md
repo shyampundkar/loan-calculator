@@ -20,7 +20,7 @@ How to use:
 
 
 
-http verb: POST
+HTTP verb: POST  
 Google App Engine url: https://learned-shell-332900.ts.r.appspot.com/calculate-loan
 
 
