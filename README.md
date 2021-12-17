@@ -1,19 +1,22 @@
-#Loan calculator
-
-##Calculator Information
+Loan calculator
+-
+Calculator Information:  
 The Loan Repayments Calculator calculates the repayment amount depending upon the repayment frequency requested, which is dependent upon amount, term and interest rate.
 Based on:
-https://www.serviceone.com.au/BankingAndFinance/Loans/Calculators/LoanRepaymentCalculator
+https://www.serviceone.com.au/BankingAndFinance/Loans/Calculators/LoanRepaymentCalculator  
+
+ReadMe in html format is alo available at https://learned-shell-332900.ts.r.appspot.com/
+
+Technologies:
+-
+#Language: Go V1.17  
+#CI/CD: Github actions  
+#Lint: golangci-lint run  
 
 
-##Technologies:
--Language: Go V1.17
--CI/CD: Github actions
--Lint: golangci-lint run
+How to use:
+-
 
-
-##How to use:
-ReadMe int html format is available at https://learned-shell-332900.ts.r.appspot.com/
 
 
 http verb: POST
@@ -32,8 +35,8 @@ Input to POST Body:
 }
 ```
 
--loan types: PrincipalAndInterest/InterestOnly
--payment frequency: Weekly/Fortnightly/Monthly
+-loan types: PrincipalAndInterest / InterestOnly  
+-payment frequency: Weekly / Fortnightly / Monthly  
 
 
 ##Output:
