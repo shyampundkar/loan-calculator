@@ -1,16 +1,16 @@
-Loan calculator
+#Loan calculator
 
-Calculator Information
+##Calculator Information
 The Loan Repayments Calculator calculates the repayment amount depending upon the repayment frequency requested, which is dependent upon amount, term and interest rate.
 
 
-Technologies:
-Language: Go V1.17
-CI/CD: Github actions
-Lint: golangci-lint run
+##Technologies:
+-Language: Go V1.17
+-CI/CD: Github actions
+-Lint: golangci-lint run
 
 
-How to use:
+##How to use:
 ReadMe int html format is available at https://learned-shell-332900.ts.r.appspot.com/
 
 
@@ -20,8 +20,7 @@ Google App Engine url: https://learned-shell-332900.ts.r.appspot.com/calculate-l
 
 Input to POST Body:
 
-
-
+```
 {
   "loan_amount": 350000,
   "loan_type": "PrincipalAndInterest",
@@ -29,15 +28,15 @@ Input to POST Body:
   "interest_rate": 7.23,
   "loan_term": 1
 }
+```
+
+-loan types: PrincipalAndInterest/InterestOnly
+-payment frequency: Weekly/Fortnightly/Monthly
 
 
-loan types: PrincipalAndInterest/InterestOnly
-payment frequency: Weekly/Fortnightly/Monthly
+##Output:
 
-
-Output:
-
-
+```
 {
     "monthly_repayments": 30321,
     "total_interest_payable": 13858,
@@ -120,4 +119,5 @@ Output:
         }
     ]
 }
+```
 
