@@ -42,7 +42,7 @@ func NewRouter() *mux.Router {
 }
 
 func Index(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, "./go/readme.html")
+	http.ServeFile(w, r, "./README.html")
 }
 
 var routes = Routes{

@@ -2,6 +2,8 @@
 
 ##Calculator Information
 The Loan Repayments Calculator calculates the repayment amount depending upon the repayment frequency requested, which is dependent upon amount, term and interest rate.
+Based on:
+https://www.serviceone.com.au/BankingAndFinance/Loans/Calculators/LoanRepaymentCalculator
 
 
 ##Technologies:
