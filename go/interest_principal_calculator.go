@@ -3,7 +3,7 @@ package swagger
 import "math"
 
 type InterestPrincipalCalculator struct {
-	ICalculateAmortizationSchedule
+	ICalculator
 }
 
 // Calculate how much needs to be paid back for each month/fortnightly/weekly

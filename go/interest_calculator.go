@@ -3,7 +3,7 @@ package swagger
 import "math"
 
 type InterestCalculator struct {
-	ICalculateAmortizationSchedule
+	ICalculator
 }
 
 // Calculate loan repayment based on frequency

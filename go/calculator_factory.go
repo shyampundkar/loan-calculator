@@ -2,16 +2,16 @@ package swagger
 
 import "errors"
 
-func CreateCalculator(calculatorType string) (ICalculateAmortizationSchedule, error) {
+func CreateCalculator(calculatorType string) (calculator ICalculator, err error) {
 
 	switch calculatorType {
 	case "PrincipalAndInterest":
-		return InterestPrincipalCalculator{}, nil
+		calculator = InterestPrincipalCalculator{}
 	case "InterestOnly":
-		return InterestCalculator{}, nil
+		calculator = InterestCalculator{}
 	default:
-		return nil, errors.New("Calculator is " + calculatorType + " not supported yet")
-
+		err = errors.New(calculatorType + " Calculator is not supported yet")
 	}
 
+	return calculator, err
 }

@@ -13,7 +13,6 @@ import (
 	"errors"
 	"io/ioutil"
 	"log"
-	"math"
 	"net/http"
 	"strconv"
 )
@@ -40,7 +39,12 @@ func CalculateLoan(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	loanRepayment := CalculateLoanRepayments(calculateloanBody)
+	loanRepayment, err := CalculateLoanRepayments(calculateloanBody)
+
+	if err != nil {
+		handleError(&w, http.StatusInternalServerError, err)
+		return
+	}
 
 	j, err := json.Marshal(&loanRepayment)
 	if err != nil {
@@ -70,34 +74,4 @@ func handleError(w *http.ResponseWriter, errorCode int, er error) ModelError {
 
 	}
 	return modelError
-}
-
-func CalculateLoanRepayments(calculateloanBody CalculateloanBody) (loanRepayment LoanRepayments) {
-
-	calculator, err := CreateCalculator(calculateloanBody.LoanType)
-
-	if err != nil {
-		return LoanRepayments{}
-	}
-
-	totalNumberOfPayments := CalculateTotalNumberOfPayments(calculateloanBody)
-	repayment := calculator.CalculateRepayment(calculateloanBody.InterestRate, calculateloanBody.LoanTerm, calculateloanBody.LoanAmount, totalNumberOfPayments)
-	loanRepayment.MonthlyRepayments = math.Round(repayment)
-	loanRepayment.TotalInterestPayable = math.Round(calculator.CalculateTotalInterestPayable(calculateloanBody.LoanAmount, repayment, totalNumberOfPayments))
-	loanRepayment.AmountOwning = calculator.CalculateAmountOwning(calculateloanBody.InterestRate, calculateloanBody.LoanTerm, calculateloanBody.LoanAmount, repayment, totalNumberOfPayments)
-
-	return
-}
-
-func CalculateTotalNumberOfPayments(calculateloanBody CalculateloanBody) (totalNumberOfPayments int32) {
-	switch calculateloanBody.PaymentFrequency {
-	case "Monthly":
-		totalNumberOfPayments = 12 * calculateloanBody.LoanTerm
-	case "Fortnightly":
-		totalNumberOfPayments = 26 * calculateloanBody.LoanTerm
-	case "Weekly":
-		totalNumberOfPayments = 52 * calculateloanBody.LoanTerm
-
-	}
-	return totalNumberOfPayments
 }

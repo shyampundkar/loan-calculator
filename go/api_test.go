@@ -74,13 +74,13 @@ func TestCalculateLoan(t *testing.T) {
 	})
 
 	t.Run("Calculate interest & principal repayments - Weekly - Negative", func(t *testing.T) {
-		var wantTotalInterestPayable float64 = 0
-		var wantMontlyRepayment float64 = 0
 
 		var calculateloanBody = CalculateloanBody{LoanAmount: 350000, LoanType: "PrincipalAndInterest1", PaymentFrequency: "Weekly", InterestRate: 7.23, LoanTerm: 1}
 
-		verify(calculateloanBody, wantMontlyRepayment, t, wantTotalInterestPayable)
-
+		_, err := CalculateLoanRepayments(calculateloanBody)
+		if err == nil {
+			t.Error("Expected error : " + calculateloanBody.LoanType + " Calculator is not supported yet")
+		}
 	})
 
 	t.Run("Validation for empty body - Negative", func(t *testing.T) {
@@ -94,7 +94,10 @@ func TestCalculateLoan(t *testing.T) {
 		}
 
 		var modelError ModelError
-		json.Unmarshal(requestBodyBytes, &modelError) //nolint
+		err = json.Unmarshal(requestBodyBytes, &modelError)
+		if err != nil {
+			t.Error(err)
+		}
 
 		if result, _ := strconv.Atoi(modelError.Code); (result != http.StatusBadRequest) || modelError.Message != "RequestBodyEmpty : Please enter request body" {
 			t.Errorf("got: %s want: %d", modelError.Code, http.StatusBadRequest)
@@ -117,7 +120,10 @@ func TestCalculateLoan(t *testing.T) {
 		}
 
 		var modelError ModelError
-		json.Unmarshal(requestBodyBytes, &modelError) //nolint
+		err = json.Unmarshal(requestBodyBytes, &modelError)
+		if err != nil {
+			t.Error(err)
+		}
 
 		if result, _ := strconv.Atoi(modelError.Code); result != http.StatusBadRequest {
 			t.Errorf("got: %s want: %d", modelError.Code, http.StatusBadRequest)
@@ -129,7 +135,11 @@ func TestCalculateLoan(t *testing.T) {
 func verify(calculateloanBody CalculateloanBody, wantMonthlyRepayment float64, t *testing.T, wantTotalInterestPayable float64) {
 	t.Helper()
 
-	loanRepayments := CalculateLoanRepayments(calculateloanBody)
+	loanRepayments, err := CalculateLoanRepayments(calculateloanBody)
+
+	if err != nil {
+		t.Error(err)
+	}
 
 	if loanRepayments.MonthlyRepayments != wantMonthlyRepayment {
 		t.Errorf("Monthly repayment got: %f want: %f", loanRepayments.MonthlyRepayments, wantMonthlyRepayment)
