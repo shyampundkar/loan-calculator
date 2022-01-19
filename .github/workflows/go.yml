@@ -34,5 +34,5 @@ jobs:
       uses: google-github-actions/deploy-appengine@v0.4.0
       with:
         deliverables: ./app.yaml
-        project_id: learned-shell-332900
+        project_id: learned-spider-338700
         credentials: '${{ secrets.GCP_SA_KEY }}'
