@@ -6,7 +6,7 @@ The Loan Repayments Calculator calculates the repayment amount depending upon th
 Based on:
 https://www.serviceone.com.au/BankingAndFinance/Loans/Calculators/LoanRepaymentCalculator  
 
-ReadMe in html format is also available at https://learned-shell-332900.ts.r.appspot.com/
+ReadMe in html format is also available at  https://learned-spider-338700.ts.r.appspot.com
 
 Technologies:
 -
@@ -21,7 +21,7 @@ How to use:
 
 
 HTTP verb: POST  
-Google App Engine url: https://learned-shell-332900.ts.r.appspot.com/calculate-loan
+Google App Engine url:  https://learned-spider-338700.ts.r.appspot.com/calculate-loan
 
 
 Input to POST Body:
